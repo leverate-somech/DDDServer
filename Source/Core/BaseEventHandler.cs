@@ -13,15 +13,13 @@ namespace Core
     }
 
     /// <summary>
-    /// Base Event handler for events, becuase one EventHandler can handle one then one event to handle event class should also inhert from IEventHandler<T>
+    /// Base Event handler for events, becuase one EventHandler can handle multiple events to specify the event type to handle inhert from IEventHandler
     /// </summary>
     public abstract class BaseEventHandler
     {
-        protected IAggregateRepository AggregateRepository { get; private set; }
-
-        protected IUnitOfWork CreateUnitOfWork()
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Repository to retrieve aggregate from store. Only provides aggregates that are on the same shard as Command
+        /// </summary>
+        protected IAggregateRepository AggregateRepository { get; private set; }        
     }
 }

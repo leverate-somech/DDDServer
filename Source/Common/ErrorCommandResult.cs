@@ -1,5 +1,8 @@
 ﻿namespace Common
 {
+    /// <summary>
+    /// General error command result
+    /// </summary>
     public class ErrorCommandResult : ICommandResult
     {        
         public ErrorCommandResult(string reason = "")

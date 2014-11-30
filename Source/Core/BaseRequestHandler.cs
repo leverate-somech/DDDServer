@@ -7,6 +7,10 @@ using Common;
 
 namespace Core
 {
+    /// <summary>
+    /// Request handler. Requests should not change any aggregate and only return information.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class BaseRequestHandler<T> where T : IRequest
     {
         protected IAggregateRepository AggregateRepository { get; private set; }

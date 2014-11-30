@@ -17,6 +17,12 @@ namespace Core
 
         }
 
+
+        public void ConfigureSnapshot(TimeSpan interval, int numberOfSnapshotToKeep)
+        {
+            
+        }
+
         public void Start()
         {
             throw new NotImplementedException();
