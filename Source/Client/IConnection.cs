@@ -6,13 +6,7 @@ using Common;
 namespace Client
 {
     public interface IConnection : IDisposable
-    {
-        /// <summary>
-        /// Return a shard we can use to create new aggregates
-        /// </summary>
-        /// <returns></returns>
-        int GetRandomShard();
-
+    {        
         /// <summary>
         /// Execute a command and return the command result
         /// </summary>
@@ -28,14 +22,14 @@ namespace Client
         Task<ICommandResult> ExecuteCommandAsync(ICommand command);
         
         /// <summary>
-        /// Send a request to a shard and returns a DTO
+        /// Send a request to aggregate and get DTO
         /// </summary>
         /// <param name="request">Request</param>
         /// <returns>DTO that was requested</returns>
         T ExecuteRequest<T>(IRequest request) where T: IDTO;
 
         /// <summary>
-        /// Send a request to a shard asynchronously
+        /// Send a request to a aggregate asynchronously
         /// </summary>
         /// <param name="request">Request</param>
         /// <returns>Task</returns>
@@ -43,35 +37,31 @@ namespace Client
 
         /// <summary>
         /// Get all events for specific aggregate
-        /// </summary>
-        /// <param name="shard">Shard where aggregate is stored</param>
+        /// </summary>        
         /// <param name="aggregateId">Id of the aggregate</param>
         /// <returns>All the events of the aggregate</returns>
-        IEnumerable<IEvent> GetEvents(int shard, Guid aggregateId);
+        IEnumerable<IEvent> GetEvents(Guid aggregateId);
 
         /// <summary>
         /// Get all events for specific aggregate asynchronously
-        /// </summary>
-        /// <param name="shard">Shard where aggregate is stored</param>
+        /// </summary>        
         /// <param name="aggregateId">Id of the aggregate</param>
         /// <returns>Task</returns>
-        Task<IEnumerable<IEvent>> GetEventsAsync(int shard, Guid aggregateId);
+        Task<IEnumerable<IEvent>> GetEventsAsync(Guid aggregateId);
 
         /// <summary>
         /// Get events for specific aggregate between versions
-        /// </summary>
-        /// <param name="shard">Shard where aggregate is stored</param>
+        /// </summary>        
         /// <param name="aggregateId">Id of the aggregate</param>
         /// <returns>Events of the aggregate</returns>
-        IEnumerable<IEvent> GetEventsBetweenVersions(int shard, Guid aggregateId, int fromVersionIncluding, int toVersionExcluding);
+        IEnumerable<IEvent> GetEventsBetweenVersions(Guid aggregateId, int fromVersionIncluding, int toVersionExcluding);
 
         /// <summary>
         /// Get events for specific aggregate between versions asynchronously
-        /// </summary>
-        /// <param name="shard">Shard where aggregate is stored</param>
+        /// </summary>        
         /// <param name="aggregateId">Id of the aggregate</param>
         /// <returns>Task</returns>
-        Task<IEnumerable<IEvent>> GetEventsBetweenVersionsAsync(int shard, Guid aggregateId, int fromVersionIncluding, int toVersionExcluding);        
+        Task<IEnumerable<IEvent>> GetEventsBetweenVersionsAsync(Guid aggregateId, int fromVersionIncluding, int toVersionExcluding);        
 
         /// <summary>
         /// Subscribe for specific event

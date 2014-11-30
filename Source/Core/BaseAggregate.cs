@@ -10,12 +10,7 @@ namespace Core
         /// Id of the aggregate
         /// </summary>
         public Guid Id { get; protected set; }
-
-        /// <summary>
-        /// Shard which the aggregate live on
-        /// </summary>
-        public int Shard { get; protected set; }
-
+        
         /// <summary>
         /// Current version of the aggregate
         /// </summary>

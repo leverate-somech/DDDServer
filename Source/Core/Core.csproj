@@ -40,13 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseAggregate.cs" />
-    <Compile Include="BaseCommandHandler.cs" />
-    <Compile Include="BaseEventHandler.cs" />
-    <Compile Include="BaseRequestHandler.cs" />
-    <Compile Include="IAggregateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfHost.cs" />
-    <Compile Include="CurrentShard.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

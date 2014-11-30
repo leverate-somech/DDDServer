@@ -4,8 +4,7 @@ namespace Common
 {
     public interface IEvent
     {
-        Guid AggregateId { get; }
-        int Shard { get; }
+        Guid AggregateId { get; }        
         long Version { get; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,13 @@ namespace Common
     public interface ICommand
     {
         /// <summary>
-        /// The shard to execute the command on
+        /// Id of the aggregate to run the command on
         /// </summary>
-        int Shard { get; }
+        Guid AggregateId { get; }
+
+        /// <summary>
+        /// Expected version of the aggregate
+        /// </summary>
+        int Version { get; }
     }
 }

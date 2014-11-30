@@ -43,7 +43,6 @@
     <Compile Include="BalanceDTO.cs" />
     <Compile Include="BalanceRequest.cs" />
     <Compile Include="CreateAccount.cs" />
-    <Compile Include="CreateAccountResult.cs" />
     <Compile Include="DepositMoney.cs" />
     <Compile Include="MoneyDeposited.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,15 +9,17 @@ namespace Example.Common
 {
     public class DepositMoney  : ICommand
     {
-        public DepositMoney(int shard, Guid accountId, decimal amount)
+        public DepositMoney(Guid aggregateId, int version, decimal amount)
         {
-            Shard = shard;
-            AccountId = accountId;
+            AggregateId = aggregateId;
+            Version = version;
             Amount = amount;
         }
 
-        public int Shard { get; private set; }
-        public Guid AccountId { get; private set; }
-        public decimal Amount { get; private set; }
+        public Guid AggregateId { get; private set; }
+
+        public int Version { get; private set; }
+
+        public decimal Amount { get; private set; }       
     }
 }

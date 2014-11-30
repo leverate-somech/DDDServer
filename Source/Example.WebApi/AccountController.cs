@@ -24,7 +24,8 @@ namespace Example.WebApi
         public async Task<IHttpActionResult> DepositMoney(DepositMoneyModel depositMoneyModel)
         {            
             ICommandResult result = 
-                await m_connection.ExecuteCommandAsync(new DepositMoney(depositMoneyModel.Shard, depositMoneyModel.AccountId, depositMoneyModel.Amount));
+                await m_connection.ExecuteCommandAsync(
+                new DepositMoney(depositMoneyModel.AccountId, depositMoneyModel.Version, depositMoneyModel.Amount));
 
             if (result.Success)
             {                
@@ -39,15 +40,13 @@ namespace Example.WebApi
         [HttpPost]
         public async Task<IHttpActionResult> CreateAccount()
         {
-            int shard = m_connection.GetRandomShard();
+            Guid accountId = Guid.NewGuid();
 
-            ICommandResult result = await m_connection.ExecuteCommandAsync(new CreateAccount(shard));
+            ICommandResult result = await m_connection.ExecuteCommandAsync(new CreateAccount(accountId));
 
-            if (result is CreateAccountResult)
-            {
-                var accountResult = result as CreateAccountResult;
-
-                return Ok(new {Shard = shard, AccoundId = accountResult.AccountId});
+            if (result.Success)
+            {                
+                return Ok(new {AccountId =accountId });
             }
             else
             {
@@ -56,12 +55,9 @@ namespace Example.WebApi
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetBalance(AccountKey accountKey)
+        public async Task<IHttpActionResult> GetBalance(Guid accountId)
         {
-            var balance =
-                await
-                    m_connection.ExecuteRequestAsync<BalanceDTO>(new BalanceRequest(accountKey.Shard,
-                        accountKey.AccountId));
+            var balance = await m_connection.ExecuteRequestAsync<BalanceDTO>(new BalanceRequest(accountId));
 
             return Ok(balance.Balance);            
         }

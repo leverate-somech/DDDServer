@@ -9,7 +9,7 @@ namespace Example.WebApi
     public class DepositMoneyModel
     {
         public Guid AccountId { get; set; }
-        public int Shard { get; set; }
+        public int Version { get; set; }
         public decimal Amount { get; set; }
     }
 }

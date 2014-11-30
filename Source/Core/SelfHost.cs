@@ -9,8 +9,18 @@ namespace Core
 {
     public class SelfHost
     {
+        public void RegisterAggregate<T>()
+        {
+            
+        }
+
+        public void RegisterAggregate(Type aggregateType)
+        {
+
+        }
+
         /// <summary>
-        /// Register Command handlers, Request handlers and Aggregates from assembly
+        /// Register Aggregates from assembly
         /// </summary>
         /// <param name="type">Type of object that is inside the assembly to register</param>
         public void RegisterAssembly(Type type)
@@ -19,7 +29,7 @@ namespace Core
         }
 
         /// <summary>
-        /// Register Command handlers, Request handlers and Aggregates from assembly
+        /// Register Aggregates from assembly
         /// </summary>
         /// <param name="assembly"></param>
         public void RegisterAssembly(Assembly assembly)
@@ -28,7 +38,7 @@ namespace Core
         }
 
         /// <summary>
-        /// Register Command handlers, Request handlers and Aggregates from assembly
+        /// Register Aggregates from executing assembly
         /// </summary>
         public void RegisterExecutingAssembly()
         {

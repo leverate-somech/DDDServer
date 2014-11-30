@@ -1,14 +1,18 @@
-﻿using Common;
+﻿using System;
+using Common;
 
 namespace Example.Common
 {
     public class CreateAccount: ICommand
     {
-        public CreateAccount(int shard)
+        public CreateAccount(Guid aggregateId)
         {
-            Shard = shard;
+            AggregateId = aggregateId;
+            Version = 0; // We don't expect the aggregate to exist
         }
 
-        public int Shard { get; private set; }
+        public Guid AggregateId { get; private set; }
+
+        public int Version { get; private set; }
     }
 }

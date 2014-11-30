@@ -9,13 +9,11 @@ namespace Example.Common
 {
     public class BalanceRequest : IRequest
     {
-        public BalanceRequest(int shard, Guid accountId)
+        public BalanceRequest(Guid aggregateId)
         {
-            Shard = shard;
-            AccountId = accountId;
+            AggregateId = aggregateId;
         }
 
-        public int Shard { get; private set; }
-        public Guid AccountId { get; private set; }
+        public Guid AggregateId { get; private set; }
     }
 }

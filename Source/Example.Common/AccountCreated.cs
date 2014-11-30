@@ -9,15 +9,13 @@ namespace Example.Common
 {
     public class AccountCreated : IEvent
     {
-        public AccountCreated(Guid aggregateId, int shard, long version)
+        public AccountCreated(Guid aggregateId, long version)
         {
-            AggregateId = aggregateId;
-            Shard = shard;
+            AggregateId = aggregateId;            
             Version = version;
         }
 
-        public Guid AggregateId { get; private set; }
-        public int Shard { get; private set; }
+        public Guid AggregateId { get; private set; }        
         public long Version { get; private set; }
     }
 }
