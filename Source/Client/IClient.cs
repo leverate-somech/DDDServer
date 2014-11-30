@@ -5,7 +5,7 @@ using Common;
 
 namespace Client
 {
-    public interface IConnection : IDisposable
+    public interface IClient : IDisposable
     {        
         /// <summary>
         /// Execute a command and return the command result

@@ -13,18 +13,18 @@ namespace Example.WebApi
 {
     public class AccountController : ApiController
     {
-        private readonly IConnection m_connection;
+        private readonly IClient m_client;
 
-        public AccountController(IConnection connection)
+        public AccountController(IClient client)
         {
-            m_connection = connection;
+            m_client = client;
         }
 
         [HttpPost]
         public async Task<IHttpActionResult> DepositMoney(DepositMoneyModel depositMoneyModel)
         {            
             ICommandResult result = 
-                await m_connection.ExecuteCommandAsync(
+                await m_client.ExecuteCommandAsync(
                 new DepositMoney(depositMoneyModel.AccountId, depositMoneyModel.Version, depositMoneyModel.Amount));
 
             if (result.Success)
@@ -42,7 +42,7 @@ namespace Example.WebApi
         {
             Guid accountId = Guid.NewGuid();
 
-            ICommandResult result = await m_connection.ExecuteCommandAsync(new CreateAccount(accountId));
+            ICommandResult result = await m_client.ExecuteCommandAsync(new CreateAccount(accountId));
 
             if (result.Success)
             {                
@@ -57,7 +57,7 @@ namespace Example.WebApi
         [HttpGet]
         public async Task<IHttpActionResult> GetBalance(Guid accountId)
         {
-            var balance = await m_connection.ExecuteRequestAsync<BalanceDTO>(new BalanceRequest(accountId));
+            var balance = await m_client.ExecuteRequestAsync<BalanceDTO>(new BalanceRequest(accountId));
 
             return Ok(balance.Balance);            
         }

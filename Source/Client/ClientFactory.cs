@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    public class ConnectionFactory
+    public class ClientFactory
     {
-        public IConnection Create(string connectionString)
+        public IClient Create(string connectionString)
         {
             throw new NotImplementedException();
         }
