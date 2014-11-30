@@ -18,7 +18,7 @@ namespace Core
         /// <summary>
         /// Repository to retrieve aggregate from store. Only provides aggregates that are on the same shard as Command
         /// </summary>
-        protected IAggregateRepository AggregateRepository { get; private set; }        
+        protected IAggregateRepository AggregateRepository { get; private set; }      
 
         /// <summary>
         /// Use when want to return a general success result
@@ -44,6 +44,6 @@ namespace Core
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        protected abstract ICommandResult Handle(ICommand command);
+        protected abstract ICommandResult Handle(T command);
     }
 }

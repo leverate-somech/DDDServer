@@ -6,7 +6,13 @@ using Common;
 namespace Client
 {
     public interface IConnection : IDisposable
-    {                
+    {
+        /// <summary>
+        /// Return a shard we can use to create new aggregates
+        /// </summary>
+        /// <returns></returns>
+        int GetRandomShard();
+
         /// <summary>
         /// Execute a command and return the command result
         /// </summary>
